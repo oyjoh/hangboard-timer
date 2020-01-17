@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import UIfx from 'uifx'
+import bellAudio from './bell.mp3'
 
 class Timer extends Component {
     constructor(props) {
@@ -12,10 +14,19 @@ class Timer extends Component {
 
 
     render() {
+        const bell = new UIfx(
+            bellAudio,
+            {
+                volume: 0.4, // number between 0.0 ~ 1.0
+                throttleMs: 100
+            }
+        )
+
         const {count} = this.state
         const {text} = this.state
 
         if (count < 0) {
+            bell.play()
             console.log(this.state.countArr)
             let next = this.state.countArr.shift()
             console.log(next)
