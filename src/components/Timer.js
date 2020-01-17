@@ -39,7 +39,7 @@ class Timer extends Component {
         const {text} = this.props
         const {countArr} = this.props
         this.setState({
-            count: count,
+            count: 3, //3sek to ready up
             text: text,
             countArr: countArr
         })

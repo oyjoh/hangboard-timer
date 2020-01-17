@@ -6,15 +6,16 @@ class IntervalTimer extends Component{
         super(props)
         this.state = {
             hang: this.props.hang,
-            rest1: null,
-            reps1: null,
-            rest2: null,
-            reps2: null,
+            rest1: this.props.rest1,
+            reps1: this.props.reps1,
+            rest2: this.props.rest2,
+            reps2: this.props.reps2,
 
             timerArr: []
         }
-    }
 
+    }
+    /*
     componentWillMount() {
         const {hang} = this.props
         const {rest1} = this.props
@@ -32,13 +33,12 @@ class IntervalTimer extends Component{
         })
         console.log('hangtime: ' + this.state.hang)
         this.createArr()
-    }
+    } */
 
-    createArr() {
+    componentWillMount() {
         console.log(this.state)
-        let arr = []
+        const arr = []
 
-        arr.push(3) //3sek to get ready
         for (let i = 0; i < this.state.reps2; i++) {
             for (let j = 0; j < this.state.reps1; j++) {
                 arr.push(this.state.hang)
@@ -47,15 +47,17 @@ class IntervalTimer extends Component{
             }
             arr.push(this.state.rest2)
         }
-
+        console.log(arr)
         this.setState({
             timerArr: arr
         })
+        console.log(this.state.timerArr)
     }
 
     render() {
         return(
             <div>
+                {console.log("from render: " + this.state.timerArr)}
                 <Timer countArr={this.state.timerArr}/>
             </div>
         )
