@@ -1,79 +1,68 @@
 import React from 'react';
-import { Button, Grid, Typography, ButtonGroup, Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {Button, ButtonGroup, Paper, Typography} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    margin: theme.spacing(1),
-  },
-  buttonGroup: {
-    alignItems: 'center',
-  }
+    root: {
+        flexGrow: 1,
+        margin: theme.spacing(1),
+    },
+    buttonGroup: {
+        alignItems: 'center',
+    },
 }));
 
 export default function Selector(props) {
 
-  const [state, setState] = React.useState({
-    unit: props.unit,
-    text: props.text,
-    min: props.min,
-    max: props.max,
-    incValue: props.incValue,
-    clicks: props.min,
-    show: true
-  });
+    const callBackFunc = props.parentCallBack;
+
+    const [state, setState] = React.useState({
+        pos: props.pos,
+        unit: props.unit,
+        text: props.text,
+        min: props.min,
+        max: props.max,
+        incValue: props.incValue,
+        clicks: props.min,
+        show: true
+    });
+
+    const sendData = (num) => {
+        callBackFunc({num: num, pos: state.pos});
+    };
+
+    const IncrementItem = () => {
+        const num = (Math.min(state.clicks + state.incValue, state.max));
+        setState({...state, clicks: num});
+        sendData(num);
+    };
+    const DecrementItem = () => {
+        const num = (Math.max(state.clicks - state.incValue, state.min));
+        setState({...state, clicks: num});
+        sendData(num);
+    };
 
 
-  const IncrementItem = () => {
-    setState({ ...state, clicks: (Math.min(state.clicks + state.incValue, state.max)) });
-  };
-  const DecrementItem = () => {
-    setState({ ...state, clicks: (Math.max(state.clicks - state.incValue, state.min)) });
-  };
+    const classes = useStyles();
 
-
-  const classes = useStyles();
-
-  return (
-      <div>
-      <Paper variant="outlined">
-          <div className={classes.root}>
-                      <Typography gutterBottom >
-                          {state.text}
-                      </Typography>
-                      <ButtonGroup fullWidth size="small">
-                          <Button disableElevation color="primary" value="inc" onClick={IncrementItem}><AddIcon /></Button>
-                          <Button disabled>{state.clicks} {state.unit}</Button>
-                          <Button disableElevation color="secondary" value="dec" onClick={DecrementItem}><RemoveIcon /></Button>
-                      </ButtonGroup>
-          </div>
-      </Paper>
-      </div>
-  );
-}
-
-/*
-<div>
-      <Paper variant="outlined">
-        <div className={classes.root}>
-          <Grid container justify="space-between">
-            <Grid item xs={4}>
-              <Typography gutterBottom>
-                {state.text}
-              </Typography>
-            </Grid>
-            <Grid item xs={8}>
-              <ButtonGroup fullWidth size="small">
-                <Button disableElevation color="primary" value="inc" onClick={IncrementItem}><AddIcon /></Button>
-                <Button disabled>{state.clicks} {state.unit}</Button>
-                <Button disableElevation color="secondary" value="dec" onClick={DecrementItem}><RemoveIcon /></Button>
-              </ButtonGroup>
-            </Grid>
-          </Grid>
+    return (
+        <div>
+            <Paper variant="outlined">
+                <div className={classes.root}>
+                    <Typography gutterBottom>
+                        {state.text}
+                    </Typography>
+                    <ButtonGroup fullWidth>
+                        <Button size="small" disableElevation color="primary" value="inc"
+                                onClick={IncrementItem}><AddIcon/></Button>
+                        <Button size="large" disabled>{state.clicks} {state.unit}</Button>
+                        <Button size="small" disableElevation color="secondary" value="dec"
+                                onClick={DecrementItem}><RemoveIcon/></Button>
+                    </ButtonGroup>
+                </div>
+            </Paper>
         </div>
-      </Paper>
-    </div>
-*/
+    );
+}

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
 import Selector from './Selector';
-import { Grid, Button } from '@material-ui/core';
+import {Button, Grid} from '@material-ui/core';
 
-import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
+import {ToggleButton, ToggleButtonGroup} from '@material-ui/lab';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
@@ -13,14 +13,31 @@ import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    marginTop: theme.spacing(1)
-  },
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        margin: theme.spacing(1)
+    },
 }));
 
 const HangTimer = () => {
+
+    const [state, setState] = React.useState({
+        hangTime: 0,
+        intervalTime: 0,
+        reps: 0,
+        restTime: 0,
+        rounds: 0,
+    });
+
+    const postValues = () => {
+        console.log(`hangtime: ${state.hangTime} intervalTime: ${state.intervalTime} reps: ${state.reps} restTime: ${state.restTime} rounds: ${state.rounds}`);
+    };
+
+    const callBackFunction = (e) => {
+        console.log(`${e.num} ${e.pos}`);
+        setState( {...state, [e.pos]: e.num});
+    };
 
     const classes = useStyles();
 
@@ -34,11 +51,26 @@ const HangTimer = () => {
     };
 
     const selectors = [
-        {item: <Selector unit="sec" text="Hang Time" min={0} max={120} incValue={5}/>, key:0},
-        {item: <Selector unit="sec" text="Interval Rest" min={10} max={20} incValue={1}/>, key:1},
-        {item: <Selector unit="reps" text="Reps" min={1} max={20} incValue={1}/>, key:2},
-        {item: <Selector unit="sec" text="Set Rest" min={0} max={10} incValue={2}/>, key:3},
-        {item: <Selector unit="Rounds" text="Rounds" min={0} max={10} incValue={2}/>, key:4}
+        {
+            item: <Selector pos="hangTime" parentCallBack={callBackFunction} unit="sec" text="Hang Time" min={0}
+                            max={120} incValue={5}/>, key: 0
+        },
+        {
+            item: <Selector pos="intervalTime" parentCallBack={callBackFunction} unit="sec" text="Interval Rest"
+                            min={10} max={20} incValue={1}/>, key: 1
+        },
+        {
+            item: <Selector pos="reps" parentCallBack={callBackFunction} unit="reps" text="Reps" min={1} max={20}
+                            incValue={1}/>, key: 2
+        },
+        {
+            item: <Selector pos="restTime" parentCallBack={callBackFunction} unit="sec" text="Set Rest" min={0} max={10}
+                            incValue={2}/>, key: 3
+        },
+        {
+            item: <Selector pos="rounds" parentCallBack={callBackFunction} unit="Rounds" text="Rounds" min={0} max={10}
+                            incValue={2}/>, key: 4
+        }
     ];
 
     const gridElems = selectors.map(elem =>
@@ -47,31 +79,32 @@ const HangTimer = () => {
         </Grid>
     );
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={1}>
-        {gridElems}
-        <Grid item xs={12}>
-          <Button color="primary" variant="outlined" fullWidth><PlayArrowIcon /></Button>
-        </Grid>
-      </Grid>
+    return (
+        <div className={classes.root}>
+            <ToggleButtonGroup
+                size="small"
+                value={mode}
+                exclusive
+                onChange={handleModeChange}
+                arial-label="list mode"
+            >
+                <ToggleButton value="list">
+                    <ViewListIcon/>
+                </ToggleButton>
+                <ToggleButton value="grid">
+                    <ViewModuleIcon/>
+                </ToggleButton>
+            </ToggleButtonGroup>
+            <Grid container spacing={1}>
+                {gridElems}
+                <Grid item xs={12}>
+                    <Button size="large" color="primary" variant="outlined" fullWidth><PlayArrowIcon/></Button>
+                </Grid>
+            </Grid>
 
-      <ToggleButtonGroup
-        size="small"
-        value={mode}
-        exclusive
-        onChange={handleModeChange}
-        arial-label="list mode"
-      >
-        <ToggleButton value="list">
-          <ViewListIcon />
-        </ToggleButton>
-        <ToggleButton value="grid">
-          <ViewModuleIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
-    </div>
-  );
+            <Button onClick={postValues}>PostValues</Button>
+        </div>
+    );
 };
 
 export default HangTimer;

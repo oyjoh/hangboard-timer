@@ -10,9 +10,7 @@ import Values from "./components/Values"
 
 const App = () => (
             <div className="App">
-                <Header text="Hangboard-timer"/>
-                <h1>Hangboard-timer</h1>
-                <Values/>
+                <Header title="Hangboard-timer"/>
                 <HangTimer/>
             </div>
         );
