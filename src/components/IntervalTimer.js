@@ -41,11 +41,11 @@ class IntervalTimer extends Component{
 
         for (let i = 0; i < this.state.reps2; i++) {
             for (let j = 0; j < this.state.reps1; j++) {
-                arr.push(this.state.hang)
-                arr.push(this.state.rest1)
+                arr.push([this.state.hang, 'work'])
+                arr.push([this.state.rest1, 'rest'])
                 console.log('its happen')
             }
-            arr.push(this.state.rest2)
+            arr.push([this.state.rest2, 'rest'])
         }
         console.log(arr)
         this.setState({

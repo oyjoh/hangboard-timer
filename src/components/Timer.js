@@ -20,7 +20,8 @@ class Timer extends Component {
             let next = this.state.countArr.shift()
             console.log(next)
             this.setState({
-                count: next
+                count: next[0],
+                text: next[1]
             })
         }
 
