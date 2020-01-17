@@ -26,7 +26,7 @@ export default function Selector(props) {
         max: props.max,
         incValue: props.incValue,
         clicks: props.min,
-        show: true
+        show: true,
     });
 
     const sendData = (num) => {

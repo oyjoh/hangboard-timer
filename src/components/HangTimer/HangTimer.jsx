@@ -11,6 +11,8 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
+import IntervalTimer from "../IntervalTimer";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,6 +30,7 @@ const HangTimer = () => {
         reps: 0,
         restTime: 0,
         rounds: 0,
+        intervalTimer: null,
     });
 
     const postValues = () => {
@@ -40,6 +43,8 @@ const HangTimer = () => {
     };
 
     const classes = useStyles();
+
+    const [timer, setTimer] = useState({elem: <div>hey</div>});
 
     const [mode, setMode] = useState('grid');
 
@@ -79,6 +84,16 @@ const HangTimer = () => {
         </Grid>
     );
 
+    const startTimer = () => {
+        console.log("Hey");
+        setTimer({...timer, elem: <IntervalTimer
+                hang={state.hangTime}
+                rest1={state.restTime}
+                reps1={state.reps}
+                rest2={state.restTime}
+                reps2={state.rounds}/>});
+    };
+
     return (
         <div className={classes.root}>
             <ToggleButtonGroup
@@ -98,11 +113,11 @@ const HangTimer = () => {
             <Grid container spacing={1}>
                 {gridElems}
                 <Grid item xs={12}>
-                    <Button size="large" color="primary" variant="outlined" fullWidth><PlayArrowIcon/></Button>
+                    <Button size="large" color="primary" variant="outlined" onClick={startTimer} fullWidth><PlayArrowIcon/></Button>
                 </Grid>
             </Grid>
-
             <Button onClick={postValues}>PostValues</Button>
+            {timer.elem}
         </div>
     );
 };
