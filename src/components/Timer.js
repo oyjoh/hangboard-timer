@@ -41,7 +41,7 @@ class Timer extends Component {
         const {countArr} = this.props
         this.setState({
             count: 3, //3sek to ready up
-            text: text,
+            text: 'Get ready',
             countArr: countArr
         })
         this.doIntervalChange()
