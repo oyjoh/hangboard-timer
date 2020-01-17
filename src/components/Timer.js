@@ -5,19 +5,31 @@ class Timer extends Component {
         super(props)
         this.state = {
             count: 1,
-            text: 'undefined'
+            text: 'undefined',
+            countArr: []
         }
     }
+
 
     render() {
         const {count} = this.state
         const {text} = this.state
+
+        if (count < 0) {
+            console.log(this.state.countArr)
+            let next = this.state.countArr.shift()
+            console.log(next)
+            this.setState({
+                count: next
+            })
+        }
+
         return (
             <div>
                 <h3>{text}</h3>
                 <h3>{count}s</h3>
             </div>
-        )
+        );
     }
 
     // setInterval
@@ -25,9 +37,11 @@ class Timer extends Component {
     componentDidMount() {
         const {count} = this.props
         const {text} = this.props
+        const {countArr} = this.props
         this.setState({
             count: count,
-            text: text
+            text: text,
+            countArr: countArr
         })
         this.doIntervalChange()
     }

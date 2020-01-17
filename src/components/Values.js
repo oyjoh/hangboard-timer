@@ -38,9 +38,10 @@ class Values extends Component {
         let data
 
         if (hasSubmitted) {
-            data = <IntervalTimer/>
+            data = <IntervalTimer hang={this.state.hang} rest1={this.state.rest1} reps1={this.state.reps1}
+                                  rest2={this.state.rest2} reps2={this.state.reps2}/>
         } else {
-            data =                 <form onSubmit={this.handleSubmit}>
+            data = <form onSubmit={this.handleSubmit}>
                 <p>hang<NumericInput onChange={value => this.setState({hang: value})} name='hang' min={0} max={100}
                                      value={this.state.hang} format={secFormat}/></p>
                 <p>rest<NumericInput onChange={value => this.setState({rest1: value})} name='rest1' min={0}
