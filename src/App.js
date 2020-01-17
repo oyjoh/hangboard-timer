@@ -1,19 +1,20 @@
 import React, {Component} from "react";
 import './App.css';
 
+
+import HangTimer from './components/HangTimer/HangTimer'
+import Header from './components/Header/Header'
 import Countdown from "./components/Countdown";
 import Timer from "./components/Timer"
 import Values from "./components/Values"
 
-class App extends React.Component {
-    render() {
-        return (
+const App = () => (
             <div className="App">
+                <Header text="Hangboard-timer"/>
                 <h1>Hangboard-timer</h1>
                 <Values/>
+                <HangTimer/>
             </div>
         );
-    }
-}
 
 export default App;
