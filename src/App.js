@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from "react";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Countdown from "./components/Countdown";
+import Timer from "./components/Timer"
+import Values from "./components/Values"
+
+class App extends React.Component {
+    render() {
+        return (
+            <div className="App">
+                <h1>Hangboard-timer</h1>
+                <Values/>
+            </div>
+        );
+    }
 }
 
 export default App;
