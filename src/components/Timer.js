@@ -2,9 +2,6 @@ import React, {Component} from 'react'
 import UIfx from 'uifx'
 import bellAudio from './bell.mp3'
 import Paper from '@material-ui/core/Paper';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 class Timer extends Component {
@@ -49,10 +46,10 @@ class Timer extends Component {
                         <Typography color="textSecondary" gutterBottom>
                             Timer
                         </Typography>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h2" display="block" color="textSecondary" component="h2">
                             {count}
                         </Typography>
-                        <Typography color="textSecondary">
+                        <Typography variant="button" display="block" color="textSecondary">
                             {text}
                         </Typography>
                 </Paper>

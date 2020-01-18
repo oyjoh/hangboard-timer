@@ -49,7 +49,7 @@ export default function Selector(props) {
 
     return (
         <div>
-            <Paper variant="outlined">
+            <Paper elevation={0} >
                 <div className={classes.root}>
                     <Typography gutterBottom>
                         {state.text}
