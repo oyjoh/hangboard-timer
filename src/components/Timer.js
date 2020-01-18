@@ -1,8 +1,15 @@
 import React, {Component} from 'react'
 import UIfx from 'uifx'
 import bellAudio from './bell.mp3'
+import Paper from '@material-ui/core/Paper';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 class Timer extends Component {
+
+
     constructor(props) {
         super(props)
         this.state = {
@@ -38,8 +45,17 @@ class Timer extends Component {
 
         return (
             <div>
-                <h3>{text}</h3>
-                <h3>{count}s</h3>
+                <Paper>
+                        <Typography color="textSecondary" gutterBottom>
+                            Timer
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            {count}
+                        </Typography>
+                        <Typography color="textSecondary">
+                            {text}
+                        </Typography>
+                </Paper>
             </div>
         );
     }

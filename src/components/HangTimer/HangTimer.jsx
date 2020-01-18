@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         margin: theme.spacing(1)
     },
+    toggleButtonGroup:{
+        marginBottom: theme.spacing(1),
+    }
 }));
 
 const HangTimer = () => {
@@ -33,10 +36,6 @@ const HangTimer = () => {
         intervalTimer: null,
     });
 
-    const postValues = () => {
-        console.log(`hangtime: ${state.hangTime} intervalTime: ${state.intervalTime} reps: ${state.reps} restTime: ${state.restTime} rounds: ${state.rounds}`);
-    };
-
     const callBackFunction = (e) => {
         console.log(`${e.num} ${e.pos}`);
         setState( {...state, [e.pos]: e.num});
@@ -44,7 +43,7 @@ const HangTimer = () => {
 
     const classes = useStyles();
 
-    const [timer, setTimer] = useState({elem: <div>hey</div>});
+    const [timer, setTimer] = useState({elem: null});
 
     const [mode, setMode] = useState('grid');
 
@@ -88,7 +87,7 @@ const HangTimer = () => {
         console.log("Hey");
         setTimer({...timer, elem: <IntervalTimer
                 hang={state.hangTime}
-                rest1={state.restTime}
+                rest1={state.intervalTime}
                 reps1={state.reps}
                 rest2={state.restTime}
                 reps2={state.rounds}/>});
@@ -102,6 +101,7 @@ const HangTimer = () => {
                 exclusive
                 onChange={handleModeChange}
                 arial-label="list mode"
+                className={classes.toggleButtonGroup}
             >
                 <ToggleButton value="list">
                     <ViewListIcon/>
@@ -115,9 +115,10 @@ const HangTimer = () => {
                 <Grid item xs={12}>
                     <Button size="large" color="primary" variant="outlined" onClick={startTimer} fullWidth><PlayArrowIcon/></Button>
                 </Grid>
+                <Grid item xs={12}>
+                    {timer.elem}
+                </Grid>
             </Grid>
-            <Button onClick={postValues}>PostValues</Button>
-            {timer.elem}
         </div>
     );
 };

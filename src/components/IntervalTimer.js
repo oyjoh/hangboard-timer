@@ -23,7 +23,6 @@ class IntervalTimer extends Component{
         const {rest2} = this.props
         const {reps2} = this.props
         console.log('lol wtf')
-
         this.setState({
             hang: hang,
             rest1: rest1,
@@ -57,7 +56,6 @@ class IntervalTimer extends Component{
     render() {
         return(
             <div>
-                {console.log("from render: " + this.state.timerArr)}
                 <Timer countArr={this.state.timerArr}/>
             </div>
         )

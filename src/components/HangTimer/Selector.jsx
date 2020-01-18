@@ -55,11 +55,11 @@ export default function Selector(props) {
                         {state.text}
                     </Typography>
                     <ButtonGroup fullWidth>
-                        <Button size="small" disableElevation color="primary" value="inc"
-                                onClick={IncrementItem}><AddIcon/></Button>
-                        <Button size="large" disabled>{state.clicks} {state.unit}</Button>
-                        <Button size="small" disableElevation color="secondary" value="dec"
+                        <Button size="small" disableElevation color="primary" value="dec"
                                 onClick={DecrementItem}><RemoveIcon/></Button>
+                        <Button size="large" disabled>{state.clicks} {state.unit}</Button>
+                        <Button size="small" disableElevation color="secondary" value="inc"
+                                onClick={IncrementItem}><AddIcon/></Button>
                     </ButtonGroup>
                 </div>
             </Paper>
