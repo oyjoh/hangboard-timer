@@ -8,7 +8,7 @@ class Timer extends Component {
 
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             count: 1,
             text: 'undefined',
@@ -24,16 +24,16 @@ class Timer extends Component {
                 volume: 0.4, // number between 0.0 ~ 1.0
                 throttleMs: 100
             }
-        )
+        );
 
         const {count} = this.state
         const {text} = this.state
 
         if (count < 0) {
-            bell.play()
-            console.log(this.state.countArr)
-            let next = this.state.countArr.shift()
-            console.log(next)
+            bell.play();
+            console.log(this.state.countArr);
+            let next = this.state.countArr.shift();
+            console.log(next);
             this.setState({
                 count: next[0],
                 text: next[1]
@@ -42,7 +42,7 @@ class Timer extends Component {
 
         return (
             <div>
-                <Paper>
+                <Paper elevation={0}>
                         <Typography color="textSecondary" gutterBottom>
                             Timer
                         </Typography>
@@ -60,14 +60,12 @@ class Timer extends Component {
     // setInterval
     // clearInterval
     componentDidMount() {
-        const {count} = this.props
-        const {text} = this.props
         const {countArr} = this.props
         this.setState({
             count: 3, //3sek to ready up
             text: 'Get ready',
             countArr: countArr
-        })
+        });
         this.doIntervalChange()
     }
 
@@ -77,7 +75,7 @@ class Timer extends Component {
                 count: prevState.count - 1
             }))
         }, 1000)
-    }
+    };
 
     componentWillUnmount() {
         clearInterval(this.myInterval)

@@ -1,0 +1,37 @@
+<svg width="580" height="580" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs>
+  <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_36">
+   <stop offset="0" stop-color="#000"/>
+   <stop offset="1" stop-color="#ffffff"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="582" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_33">
+   <path id="svg_11" d="m559.968724,470.453995l-537.66577,1.33262c0.33435,0.00071 -11.6656,-5.99927 -12.99893,-13.33258c-1.33333,-7.3333 3.99998,-105.33295 3.66563,-105.33366c0.33435,0.00071 7.00101,-32.99914 24.66756,-45.9991c17.66655,-12.99995 14.79475,-9.46148 52.7937,-10.79552c37.99895,-1.33404 48.87265,-0.5378 48.53829,-0.53851c0.33436,0.00071 1.00102,9.33401 0.66667,9.3333c8.33434,-0.66596 86.33404,0.00071 85.99969,0c0.33435,0.00071 0.33435,-10.66592 0,-10.66663c0.33435,0.00071 127.66723,0.66737 127.33288,0.66666c0.33435,0.00071 1.00102,12.00067 0.66667,11.99996c0.33435,0.00071 81.66739,0.00071 81.33304,0c0.33435,0.00071 -0.33231,-9.99925 -0.66666,-9.99996c0.33435,0.00071 91.66736,0.00071 91.33301,0c0.33435,0.00071 27.66758,6.66734 36.33422,48.00053c8.66663,41.33319 4.33129,19.66511 6.3323,43.99914c2.00102,24.33402 2.33433,62.66715 1.99999,62.66644l-10.33229,18.66731z" stroke-width="1.5" fill="#000"/>
+   <ellipse transform="rotate(-0.6602018475532532 163.32568073272705,436.4482593536377)" ry="14.005602" rx="13.999906" id="svg_12" cy="436.448276" cx="163.325679" stroke-width="1.5" fill="#ffffff"/>
+   <ellipse ry="14.333304" rx="14.833303" id="svg_16" cy="436.787636" cx="416.802186" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_20" height="20.999957" width="78.333173" y="349.121147" x="249.969192" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_21" height="20.999957" width="78.333173" y="311.454556" x="249.635859" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_22" height="20.999957" width="78.333173" y="426.120987" x="251.635855" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_23" height="20.999957" width="236.999516" y="387.787735" x="23.302992" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_24" height="20.999957" width="236.999516" y="387.454403" x="318.635726" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_25" height="20.999957" width="60.33321" y="426.787659" x="21.636322" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_26" height="20.999957" width="40.999918" y="425.787661" x="95.636169" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_27" height="20.999957" width="40.999918" y="426.120994" x="188.969314" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_28" height="20.999957" width="40.999918" y="425.454328" x="347.968994" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_29" height="20.999957" width="40.999918" y="426.120994" x="442.302139" stroke-width="1.5" fill="#ffffff"/>
+   <rect rx="7" id="svg_30" height="20.999957" width="60.230692" y="425.351763" x="496.917524" stroke-width="1.5" fill="#ffffff"/>
+  </g>
+  <rect rx="35" id="svg_35" height="205.454545" width="493.939394" y="129.696967" x="44.848485" stroke-width="24" stroke="#000" fill="#ffffff"/>
+  <text stroke="url(#svg_36)" transform="matrix(7.294621463181784,0,0,7.051166553051814,-3074.5670357762897,-1083.1152763673151) " xml:space="preserve" text-anchor="start" font-family="Euphoria, sans-serif" font-size="22" id="svg_37" y="195.319519" x="430.633032" stroke-width="0" fill="#000000">00:29</text>
+ </g>
+</svg>
