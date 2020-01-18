@@ -45,7 +45,7 @@ const HangTimer = () => {
 
     const [timer, setTimer] = useState({elem: null});
 
-    const [mode, setMode] = useState('grid');
+    const [mode, setMode] = useState('list');
 
     const handleModeChange = (event, value) => {
         console.log(value);
