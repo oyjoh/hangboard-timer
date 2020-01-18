@@ -3,10 +3,16 @@ import {makeStyles} from '@material-ui/core/styles';
 
 import Selector from './Selector';
 import {Button, Grid} from '@material-ui/core';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 
+import Typography from '@material-ui/core/Typography';
 import {ToggleButton, ToggleButtonGroup} from '@material-ui/lab';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
@@ -20,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         margin: theme.spacing(1)
     },
-    toggleButtonGroup:{
+    toggleButtonGroup: {
         marginBottom: theme.spacing(1),
     }
 }));
@@ -38,7 +44,7 @@ const HangTimer = () => {
 
     const callBackFunction = (e) => {
         console.log(`${e.num} ${e.pos}`);
-        setState( {...state, [e.pos]: e.num});
+        setState({...state, [e.pos]: e.num});
     };
 
     const classes = useStyles();
@@ -65,7 +71,7 @@ const HangTimer = () => {
                 min={0}
                 max={120}
                 incValue={5}/>
-                ,
+            ,
             key: 0
         },
         {
@@ -78,7 +84,7 @@ const HangTimer = () => {
                 min={0}
                 max={60}
                 incValue={5}/>
-                ,
+            ,
             key: 1
         },
         {
@@ -91,7 +97,7 @@ const HangTimer = () => {
                 min={0}
                 max={10}
                 incValue={1}/>
-                ,
+            ,
             key: 2
         },
         {
@@ -104,7 +110,7 @@ const HangTimer = () => {
                 min={0}
                 max={300}
                 incValue={10}/>
-                ,
+            ,
             key: 3
         },
         {
@@ -117,7 +123,7 @@ const HangTimer = () => {
                 min={0}
                 max={10}
                 incValue={1}/>
-                ,
+            ,
             key: 4
         }
     ];
@@ -128,14 +134,23 @@ const HangTimer = () => {
         </Grid>
     );
 
+
+    const [expanded, setExpanded] = React.useState('timer');
+
+    const handleChange = panel => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    };
+
     const startTimer = () => {
         console.log("Hey");
-        setTimer({...timer, elem: <IntervalTimer
+        setTimer({
+            ...timer, elem: <IntervalTimer
                 hang={state.hangTime}
                 rest1={state.intervalTime}
                 reps1={state.reps}
                 rest2={state.restTime}
-                reps2={state.rounds}/>});
+                reps2={state.rounds}/>
+        });
     };
 
     return (
@@ -155,17 +170,31 @@ const HangTimer = () => {
                     <ViewModuleIcon/>
                 </ToggleButton>
             </ToggleButtonGroup>
-            <Grid container spacing={1}>
-                {gridElems}
-                <Grid item xs={12}>
-                    <Button size="large" color="primary" variant="outlined" onClick={startTimer} fullWidth><PlayArrowIcon/></Button>
-                </Grid>
+            <ExpansionPanel expanded={expanded==='timer'} onChange={handleChange('timer')}>
+                <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon/>}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    Timercontrol
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <Typography>
+                        <Grid container spacing={1}>
+                            {gridElems}
+                        </Grid>
+                    </Typography>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <Button size="large" color="primary" variant="outlined" onClick={startTimer}
+                    fullWidth><PlayArrowIcon/></Button>
+            <Grid container >
                 <Grid item xs={12}>
                     {timer.elem}
                 </Grid>
             </Grid>
         </div>
-    );
+);
 };
 
 export default HangTimer;

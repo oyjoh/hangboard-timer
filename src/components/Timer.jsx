@@ -3,6 +3,7 @@ import UIfx from 'uifx'
 import bellAudio from './bell.mp3'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import {Container} from "@material-ui/core";
 
 class Timer extends Component {
 
@@ -42,6 +43,7 @@ class Timer extends Component {
 
         return (
             <div>
+                <Container maxWidth>
                 <Paper elevation={0}>
                         <Typography color="textSecondary" gutterBottom>
                             Timer
@@ -53,6 +55,7 @@ class Timer extends Component {
                             {text}
                         </Typography>
                 </Paper>
+                </Container>
             </div>
         );
     }
