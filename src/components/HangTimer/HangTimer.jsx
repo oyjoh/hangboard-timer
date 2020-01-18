@@ -28,11 +28,11 @@ const useStyles = makeStyles(theme => ({
 const HangTimer = () => {
 
     const [state, setState] = React.useState({
-        hangTime: 0,
-        intervalTime: 0,
-        reps: 0,
-        restTime: 0,
-        rounds: 0,
+        hangTime: 15,
+        intervalTime: 10,
+        reps: 4,
+        restTime: 120,
+        rounds: 3,
         intervalTimer: null,
     });
 
@@ -56,24 +56,69 @@ const HangTimer = () => {
 
     const selectors = [
         {
-            item: <Selector pos="hangTime" parentCallBack={callBackFunction} unit="sec" text="Hang Time" min={0}
-                            max={120} incValue={5}/>, key: 0
+            item: <Selector
+                pos="hangTime"
+                parentCallBack={callBackFunction}
+                unit="sec"
+                text="Hang Time"
+                startVal={state.hangTime}
+                min={0}
+                max={120}
+                incValue={5}/>
+                ,
+            key: 0
         },
         {
-            item: <Selector pos="intervalTime" parentCallBack={callBackFunction} unit="sec" text="Interval Rest"
-                            min={10} max={20} incValue={1}/>, key: 1
+            item: <Selector
+                pos="intervalTime"
+                parentCallBack={callBackFunction}
+                unit="sec"
+                text="Interval Rest"
+                startVal={state.intervalTime}
+                min={0}
+                max={60}
+                incValue={5}/>
+                ,
+            key: 1
         },
         {
-            item: <Selector pos="reps" parentCallBack={callBackFunction} unit="reps" text="Reps" min={1} max={20}
-                            incValue={1}/>, key: 2
+            item: <Selector
+                pos="reps"
+                parentCallBack={callBackFunction}
+                unit="reps"
+                text="Reps"
+                startVal={state.reps}
+                min={0}
+                max={10}
+                incValue={1}/>
+                ,
+            key: 2
         },
         {
-            item: <Selector pos="restTime" parentCallBack={callBackFunction} unit="sec" text="Set Rest" min={0} max={10}
-                            incValue={2}/>, key: 3
+            item: <Selector
+                pos="restTime"
+                parentCallBack={callBackFunction}
+                unit="sec"
+                text="Set Rest"
+                startVal={state.restTime}
+                min={0}
+                max={300}
+                incValue={10}/>
+                ,
+            key: 3
         },
         {
-            item: <Selector pos="rounds" parentCallBack={callBackFunction} unit="Rounds" text="Rounds" min={0} max={10}
-                            incValue={2}/>, key: 4
+            item: <Selector
+                pos="rounds"
+                parentCallBack={callBackFunction}
+                unit="Rounds"
+                text="Rounds"
+                startVal={state.rounds}
+                min={0}
+                max={10}
+                incValue={1}/>
+                ,
+            key: 4
         }
     ];
 

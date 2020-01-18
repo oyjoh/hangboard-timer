@@ -25,7 +25,7 @@ export default function Selector(props) {
         min: props.min,
         max: props.max,
         incValue: props.incValue,
-        clicks: props.min,
+        clicks: props.startVal,
         show: true,
     });
 
