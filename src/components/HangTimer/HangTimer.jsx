@@ -3,31 +3,23 @@ import {makeStyles} from '@material-ui/core/styles';
 
 import Selector from './Selector';
 import {Button, Grid} from '@material-ui/core';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-
-import Typography from '@material-ui/core/Typography';
 import {ToggleButton, ToggleButtonGroup} from '@material-ui/lab';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 import IntervalTimer from "../IntervalTimer";
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
+        width: 'flex',
     },
-    toggleButtonGroup: {
-        marginBottom: theme.spacing(1),
+    button: {
+        marginTop: theme.spacing(1),
     }
 }));
 
@@ -53,10 +45,15 @@ const HangTimer = () => {
 
     const [mode, setMode] = useState('list');
 
+    const [hide, setHide] = useState(false);
+
     const handleModeChange = (event, value) => {
         console.log(value);
-        if (value) {
-            setMode(value);
+        switch (value) {
+            case "list": setHide(false); setMode("list");break;
+            case "grid": setHide(false); setMode("grid");break;
+            case "hide": setHide(true); setMode("hide"); break;
+            default: break;
         }
     };
 
@@ -134,15 +131,10 @@ const HangTimer = () => {
         </Grid>
     );
 
-
-    const [expanded, setExpanded] = React.useState('timer');
-
-    const handleChange = panel => (event, newExpanded) => {
-        setExpanded(newExpanded ? panel : false);
-    };
-
     const startTimer = () => {
         console.log("Hey");
+        setHide(true);
+        setMode("hide");
         setTimer({
             ...timer, elem: <IntervalTimer
                 hang={state.hangTime}
@@ -169,32 +161,25 @@ const HangTimer = () => {
                 <ToggleButton value="grid">
                     <ViewModuleIcon/>
                 </ToggleButton>
+                <ToggleButton value="hide">
+                    <VisibilityOffIcon/>
+                </ToggleButton>
             </ToggleButtonGroup>
-            <ExpansionPanel expanded={expanded==='timer'} onChange={handleChange('timer')}>
-                <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    Timercontrol
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <Typography>
-                        <Grid container spacing={1}>
-                            {gridElems}
-                        </Grid>
-                    </Typography>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
+            {!hide && (
+                <Grid container spacing={1}>
+                    {gridElems}
+                </Grid>
+            )}
+
             <Button size="large" color="primary" variant="outlined" onClick={startTimer}
-                    fullWidth><PlayArrowIcon/></Button>
+                    fullWidth className={classes.button}><PlayArrowIcon/></Button>
             <Grid container >
                 <Grid item xs={12}>
                     {timer.elem}
                 </Grid>
             </Grid>
         </div>
-);
+    );
 };
 
 export default HangTimer;
