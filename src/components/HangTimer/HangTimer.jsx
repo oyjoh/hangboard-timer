@@ -88,8 +88,8 @@ const HangTimer = () => {
                 unit="reps"
                 text="Reps"
                 startVal={state.reps}
-                min={0}
-                max={10}
+                min={1}
+                max={20}
                 incValue={1}/>
                 ,
             key: 2
@@ -114,8 +114,8 @@ const HangTimer = () => {
                 unit="Rounds"
                 text="Rounds"
                 startVal={state.rounds}
-                min={0}
-                max={10}
+                min={1}
+                max={20}
                 incValue={1}/>
                 ,
             key: 4
