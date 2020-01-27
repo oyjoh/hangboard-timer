@@ -31,6 +31,10 @@ class Timer extends Component {
 
         if (count < 0) {
             bell.play();
+            if (this.state.countArr.length < 1) {
+                this.props.action('done')
+                return null;
+            }
             console.log(this.state.countArr);
             let next = this.state.countArr.shift();
             console.log(next);
