@@ -13,7 +13,7 @@ class Timer extends Component {
         this.state = {
             count: 1,
             text: 'undefined',
-            countArr: []
+            countArr: [],
         }
     }
 
@@ -71,13 +71,18 @@ class Timer extends Component {
         this.setState({
             count: 3, //3sek to ready up
             text: 'Get ready',
-            countArr: countArr
+            countArr: countArr,
         });
         this.doIntervalChange()
     }
 
     doIntervalChange = () => {
         this.myInterval = setInterval(() => {
+            console.log('Timer ' + this.props.getIsPaused)
+            if (this.props.getIsPaused) {
+                clearInterval(this.myInterval);
+                console.log('SHIT IS PAUSED')
+            }
             this.setState(prevState => ({
                 count: prevState.count - 1
             }))

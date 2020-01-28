@@ -32,20 +32,22 @@ const HangTimer = () => {
         restTime: 120,
         rounds: 3,
         intervalTimer: null,
+        isPaused: false
     });
+
+    const [isPaused, setPause] = React.useState(false);
+    const getIsPaused = () => isPaused;
 
     const callBackFunction = (e) => {
         console.log(`${e.num} ${e.pos}`);
         setState({...state, [e.pos]: e.num});
     };
 
-    const [isPaused, setPause] = React.useState(false);
-
     const callBackPlayPause = (e) => {
         console.log(e);
         switch (e) {
             case "play" : setPause(false); break;
-            case "pause" : setPause(true); break;
+            case "pause" : console.log("pausing"); setPause(true); break;
             case "stop" : setTimer({...state, elem: null}); break;
             default : console.error("CALLBACK GAVE UNVALID VALUE");
         }
@@ -138,6 +140,7 @@ const HangTimer = () => {
         setMode("hide");
         setTimer({
             ...timer, elem: <IntervalTimer
+                getIsPaused={getIsPaused()}
                 hang={state.hangTime}
                 rest1={state.intervalTime}
                 reps1={state.reps}
