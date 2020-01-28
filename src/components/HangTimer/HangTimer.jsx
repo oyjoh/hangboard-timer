@@ -43,9 +43,9 @@ const HangTimer = () => {
 
     const callBackPlayPause = (e) => {
         switch (e) {
-            case "play" : updateTimer(false); break;
+            case "play" : setHide(true); updateTimer(false); break;
             case "pause" : updateTimer(true); break;
-            case "stop" : setTimer(null); break;
+            case "stop" : setHide(false); setTimer(null); break;
             default : console.error("CALLBACK GAVE UNVALID VALUE");
         }
     };

@@ -47,7 +47,7 @@ class Timer extends Component {
 
         return (
             <div>
-                <Container maxWidth>
+                <Container>
                 <Paper elevation={0}>
                         <Typography variant="h4" color="textSecondary" gutterBottom>
                             Timer
@@ -55,7 +55,7 @@ class Timer extends Component {
                         <Typography variant="h1" display="block" color="textSecondary" component="h2">
                             {count}
                         </Typography>
-                        <Typography variant="h3" display="block" color="textSecondary">
+                        <Typography variant="h5" display="block" color="textSecondary">
                             {text.toString().toUpperCase()}
                         </Typography>
                 </Paper>
@@ -69,7 +69,7 @@ class Timer extends Component {
     componentDidMount() {
         const {countArr} = this.props;
         this.setState({
-            count: 3, //3sek to ready up
+            count: 5, //3sek to ready up
             text: 'Get ready',
             countArr: countArr,
         });
@@ -83,7 +83,7 @@ class Timer extends Component {
                     count: prevState.count - 1
                 }))
             }
-        }, 1000)
+        },  1000)
     };
 
     componentWillUnmount() {

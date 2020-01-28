@@ -4,9 +4,18 @@ import {Button, ButtonGroup} from '@material-ui/core';
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import StopIcon from '@material-ui/icons/Stop';
 import PauseIcon from '@material-ui/icons/Pause';
+import {makeStyles} from "@material-ui/core/styles";
 
+const useStyles = makeStyles(theme => ({
+    root: {
+        marginTop: theme.spacing(1),
+        width: 'flex',
+    },
+}));
 
 const PlayButton = (props) => {
+
+    const classes = useStyles();
 
     const callBackFunc = props.playPauseCallback;
 
@@ -50,7 +59,7 @@ const PlayButton = (props) => {
         </ButtonGroup>;
 
     return (
-        <div>
+        <div className={classes.root}>
             {buttons}
         </div>
     );

@@ -18,14 +18,12 @@ class IntervalTimer extends Component {
         this.childHandler = this.childHandler.bind(this);
     }
 
-    /*
     childHandler(dataFromChild) {
         console.log('CHILD DONE');
         this.setState({
             child_timer_done: true
         })
     }
-    */
 
     componentWillMount() {
         console.log(this.state);
