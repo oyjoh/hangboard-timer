@@ -46,13 +46,14 @@ class IntervalTimer extends Component {
     render() {
         let val;
         if (!this.state.child_timer_done) {
-            val = <Timer action={this.childHandler} countArr={this.state.timerArr}/>
+            val = <Timer action={this.childHandler} countArr={this.state.timerArr} getIsPaused={this.props.getIsPaused}/>
         } else {
             val = <Typography variant="h2" display="block" color="textSecondary" component="h2">
                 DONE
             </Typography>
         }
 
+        console.log('Intervaltimer' + this.props.getIsPaused)
         return (
             <div>
                 {val}

@@ -34,19 +34,25 @@ const HangTimer = () => {
         rounds: 3,
         isPaused: false,
         intervalTimer: null,
+        isPaused: false
     });
+
+    const [isPaused, setPause] = React.useState(false);
+    const getIsPaused = () => isPaused;
 
     const callBackFunction = (e) => {
         console.log(`${e.num} ${e.pos}`);
         setState({...state, [e.pos]: e.num});
     };
 
+    const [isPaused, setPause] = React.useState(false);
+
     const callBackPlayPause = (e) => {
         console.log(e);
         switch (e) {
-            case "play" : setState({...state, isPaused: false}); break;
-            case "pause" : setState({...state, isPaused: true}); break;
-            case "stop" : setTimer(null); break;
+            case "play" : setPause(false); break;
+            case "pause" : console.log("pausing"); setPause(true); break;
+            case "stop" : setTimer({...state, elem: null}); break;
             default : console.error("CALLBACK GAVE UNVALID VALUE");
         }
     };
@@ -131,6 +137,7 @@ const HangTimer = () => {
         setMode("hide");
         setTimer(
             <IntervalTimer
+                getIsPaused={getIsPaused()}
                 hang={state.hangTime}
                 rest1={state.intervalTime}
                 reps1={state.reps}
@@ -164,7 +171,6 @@ const HangTimer = () => {
                     {gridElems}
                 </Grid>
             )}
-
 
             <Button size="large" color="primary" variant="outlined" onClick={startTimer}
                     fullWidth className={classes.button}><PlayArrowIcon/></Button>
