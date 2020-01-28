@@ -49,14 +49,14 @@ class Timer extends Component {
             <div>
                 <Container maxWidth>
                 <Paper elevation={0}>
-                        <Typography color="textSecondary" gutterBottom>
+                        <Typography variant="h4" color="textSecondary" gutterBottom>
                             Timer
                         </Typography>
-                        <Typography variant="h2" display="block" color="textSecondary" component="h2">
+                        <Typography variant="h1" display="block" color="textSecondary" component="h2">
                             {count}
                         </Typography>
-                        <Typography variant="button" display="block" color="textSecondary">
-                            {text}
+                        <Typography variant="h3" display="block" color="textSecondary">
+                            {text.toString().toUpperCase()}
                         </Typography>
                 </Paper>
                 </Container>

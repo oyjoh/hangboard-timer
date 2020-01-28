@@ -25,12 +25,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const HangTimer = () => {
+
     const [state, setState] = React.useState({
         hangTime: 15,
         intervalTime: 10,
         reps: 4,
         restTime: 120,
         rounds: 3,
+        isPaused: false,
         intervalTimer: null,
     });
 
@@ -39,21 +41,21 @@ const HangTimer = () => {
         setState({...state, [e.pos]: e.num});
     };
 
-    const [isPaused, setPause] = React.useState(false);
-
     const callBackPlayPause = (e) => {
         console.log(e);
         switch (e) {
-            case "play" : setPause(false); break;
-            case "pause" : setPause(true); break;
-            case "stop" : setTimer({...state, elem: null}); break;
+            case "play" : setState({...state, isPaused: false}); break;
+            case "pause" : setState({...state, isPaused: true}); break;
+            case "stop" : setTimer(null); break;
             default : console.error("CALLBACK GAVE UNVALID VALUE");
         }
     };
 
+    const getIsPaused = () => state.isPaused;
+
     const classes = useStyles();
 
-    const [timer, setTimer] = useState({elem: null});
+    const [timer, setTimer] = useState(null);
 
     const [mode, setMode] = useState('list');
 
@@ -70,8 +72,7 @@ const HangTimer = () => {
     };
 
     const selectors = [
-        {
-            item: <Selector
+        <Selector
                 pos="hangTime"
                 parentCallBack={callBackFunction}
                 unit="sec"
@@ -79,10 +80,8 @@ const HangTimer = () => {
                 startVal={state.hangTime}
                 min={0}
                 max={120}
-                incValue={5}/>
-        },
-        {
-            item: <Selector
+                incValue={5}/>,
+        <Selector
                 pos="intervalTime"
                 parentCallBack={callBackFunction}
                 unit="sec"
@@ -90,10 +89,9 @@ const HangTimer = () => {
                 startVal={state.intervalTime}
                 min={0}
                 max={60}
-                incValue={5}/>
-        },
-        {
-            item: <Selector
+                incValue={5}/>,
+
+        <Selector
                 pos="reps"
                 parentCallBack={callBackFunction}
                 unit="reps"
@@ -101,10 +99,8 @@ const HangTimer = () => {
                 startVal={state.reps}
                 min={1}
                 max={20}
-                incValue={1}/>
-        },
-        {
-            item: <Selector
+                incValue={1}/>,
+        <Selector
                 pos="restTime"
                 parentCallBack={callBackFunction}
                 unit="sec"
@@ -112,10 +108,8 @@ const HangTimer = () => {
                 startVal={state.restTime}
                 min={0}
                 max={300}
-                incValue={10}/>
-        },
-        {
-            item: <Selector
+                incValue={10}/>,
+        <Selector
                 pos="rounds"
                 parentCallBack={callBackFunction}
                 unit="Rounds"
@@ -124,26 +118,25 @@ const HangTimer = () => {
                 min={1}
                 max={20}
                 incValue={1}/>
-        }
     ];
 
     const gridElems = selectors.map((elem, key) =>
         <Grid key={key} item xs={mode === 'grid' ? 6 : 12}>
-            {elem.item}
+            {elem}
         </Grid>
     );
 
     const startTimer = () => {
         setHide(true);
         setMode("hide");
-        setTimer({
-            ...timer, elem: <IntervalTimer
+        setTimer(
+            <IntervalTimer
                 hang={state.hangTime}
                 rest1={state.intervalTime}
                 reps1={state.reps}
                 rest2={state.restTime}
                 reps2={state.rounds}/>
-        });
+        );
     };
 
     return (
@@ -172,13 +165,14 @@ const HangTimer = () => {
                 </Grid>
             )}
 
+
             <Button size="large" color="primary" variant="outlined" onClick={startTimer}
                     fullWidth className={classes.button}><PlayArrowIcon/></Button>
 
             <PlayButton playPauseCallback={callBackPlayPause}/>
             <Grid container >
                 <Grid item xs={12}>
-                    {timer.elem}
+                    {timer}
                 </Grid>
             </Grid>
         </div>
