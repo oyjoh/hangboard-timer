@@ -1,10 +1,8 @@
 import React from 'react';
-import {Button, ButtonGroup, Paper} from '@material-ui/core';
+import {Button, ButtonGroup, Paper, Grid, TextField} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,7 +18,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Selector(props) {
+const Selector = (props) => {
+
+    const classes = useStyles();
 
     const callBackFunc = props.parentCallBack;
 
@@ -57,9 +57,6 @@ export default function Selector(props) {
         sendData(num);
     };
 
-
-    const classes = useStyles();
-
     return (
         <div>
             <Paper elevation={0}>
@@ -91,4 +88,6 @@ export default function Selector(props) {
             </Paper>
         </div>
     );
-}
+};
+
+export default Selector;

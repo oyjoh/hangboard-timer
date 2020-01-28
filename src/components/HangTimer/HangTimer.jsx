@@ -10,6 +10,7 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
+import PlayButton from '../PlayButton/PlayButton';
 import IntervalTimer from "../IntervalTimer";
 
 
@@ -24,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const HangTimer = () => {
-
     const [state, setState] = React.useState({
         hangTime: 15,
         intervalTime: 10,
@@ -37,6 +37,18 @@ const HangTimer = () => {
     const callBackFunction = (e) => {
         console.log(`${e.num} ${e.pos}`);
         setState({...state, [e.pos]: e.num});
+    };
+
+    const [isPaused, setPause] = React.useState(false);
+
+    const callBackPlayPause = (e) => {
+        console.log(e);
+        switch (e) {
+            case "play" : setPause(false); break;
+            case "pause" : setPause(true); break;
+            case "stop" : setTimer({...state, elem: null}); break;
+            default : console.error("CALLBACK GAVE UNVALID VALUE");
+        }
     };
 
     const classes = useStyles();
@@ -68,8 +80,6 @@ const HangTimer = () => {
                 min={0}
                 max={120}
                 incValue={5}/>
-            ,
-            key: 0
         },
         {
             item: <Selector
@@ -81,8 +91,6 @@ const HangTimer = () => {
                 min={0}
                 max={60}
                 incValue={5}/>
-            ,
-            key: 1
         },
         {
             item: <Selector
@@ -94,8 +102,6 @@ const HangTimer = () => {
                 min={0}
                 max={10}
                 incValue={1}/>
-            ,
-            key: 2
         },
         {
             item: <Selector
@@ -107,8 +113,6 @@ const HangTimer = () => {
                 min={0}
                 max={300}
                 incValue={10}/>
-            ,
-            key: 3
         },
         {
             item: <Selector
@@ -120,19 +124,16 @@ const HangTimer = () => {
                 min={0}
                 max={10}
                 incValue={1}/>
-            ,
-            key: 4
         }
     ];
 
-    const gridElems = selectors.map(elem =>
-        <Grid key={elem.key} item xs={mode === 'grid' ? 6 : 12}>
+    const gridElems = selectors.map((elem, key) =>
+        <Grid key={key} item xs={mode === 'grid' ? 6 : 12}>
             {elem.item}
         </Grid>
     );
 
     const startTimer = () => {
-        console.log("Hey");
         setHide(true);
         setMode("hide");
         setTimer({
@@ -173,6 +174,8 @@ const HangTimer = () => {
 
             <Button size="large" color="primary" variant="outlined" onClick={startTimer}
                     fullWidth className={classes.button}><PlayArrowIcon/></Button>
+
+            <PlayButton playPauseCallback={callBackPlayPause}/>
             <Grid container >
                 <Grid item xs={12}>
                     {timer.elem}
