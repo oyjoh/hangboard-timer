@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import Timer from "./Timer"
+import Typography from "@material-ui/core/Typography";
 
-class IntervalTimer extends Component{
+class IntervalTimer extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -11,28 +12,18 @@ class IntervalTimer extends Component{
             rest2: this.props.rest2,
             reps2: this.props.reps2,
 
-            timerArr: []
-        }
-
+            timerArr: [],
+            child_timer_done: false
+        };
+        this.childHandler = this.childHandler.bind(this);
     }
-    /*
-    componentWillMount() {
-        const {hang} = this.props
-        const {rest1} = this.props
-        const {reps1} = this.props
-        const {rest2} = this.props
-        const {reps2} = this.props
-        console.log('lol wtf')
+
+    childHandler(dataFromChild) {
+        console.log('CHILD DONE')
         this.setState({
-            hang: hang,
-            rest1: rest1,
-            reps1: reps1,
-            rest2: rest2,
-            reps2: reps2
+            child_timer_done: true
         })
-        console.log('hangtime: ' + this.state.hang)
-        this.createArr()
-    } */
+    }
 
     componentWillMount() {
         console.log(this.state)
@@ -42,7 +33,6 @@ class IntervalTimer extends Component{
             for (let j = 0; j < this.state.reps1; j++) {
                 arr.push([this.state.hang, 'work'])
                 arr.push([this.state.rest1, 'rest'])
-                console.log('its happen')
             }
             arr.push([this.state.rest2, 'rest'])
         }
@@ -54,9 +44,18 @@ class IntervalTimer extends Component{
     }
 
     render() {
-        return(
+        let val;
+        if (!this.state.child_timer_done) {
+            val = <Timer action={this.childHandler} countArr={this.state.timerArr}/>
+        } else {
+            val = <Typography variant="h2" display="block" color="textSecondary" component="h2">
+                DONE
+            </Typography>
+        }
+
+        return (
             <div>
-                <Timer countArr={this.state.timerArr}/>
+                {val}
             </div>
         )
     }
