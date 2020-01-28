@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 
 import Selector from './Selector';
-import {Button, Grid} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import {ToggleButton, ToggleButtonGroup} from '@material-ui/lab';
 
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -34,30 +33,34 @@ const HangTimer = () => {
         rounds: 3,
         isPaused: false,
         intervalTimer: null,
-        isPaused: false
     });
-
-    const [isPaused, setPause] = React.useState(false);
-    const getIsPaused = () => isPaused;
 
     const callBackFunction = (e) => {
         console.log(`${e.num} ${e.pos}`);
         setState({...state, [e.pos]: e.num});
     };
 
-    const [isPaused, setPause] = React.useState(false);
 
     const callBackPlayPause = (e) => {
-        console.log(e);
         switch (e) {
-            case "play" : setPause(false); break;
-            case "pause" : console.log("pausing"); setPause(true); break;
-            case "stop" : setTimer({...state, elem: null}); break;
+            case "play" : updateTimer(false); break;
+            case "pause" : updateTimer(true); break;
+            case "stop" : setTimer(null); break;
             default : console.error("CALLBACK GAVE UNVALID VALUE");
         }
     };
 
-    const getIsPaused = () => state.isPaused;
+    const updateTimer = (b) => {
+        setTimer(
+            <IntervalTimer
+                paused={b}
+                hang={state.hangTime}
+                rest1={state.intervalTime}
+                reps1={state.reps}
+                rest2={state.restTime}
+                reps2={state.rounds}/>
+        );
+    };
 
     const classes = useStyles();
 
@@ -132,20 +135,6 @@ const HangTimer = () => {
         </Grid>
     );
 
-    const startTimer = () => {
-        setHide(true);
-        setMode("hide");
-        setTimer(
-            <IntervalTimer
-                getIsPaused={getIsPaused()}
-                hang={state.hangTime}
-                rest1={state.intervalTime}
-                reps1={state.reps}
-                rest2={state.restTime}
-                reps2={state.rounds}/>
-        );
-    };
-
     return (
         <div className={classes.root}>
             <ToggleButtonGroup
@@ -171,9 +160,6 @@ const HangTimer = () => {
                     {gridElems}
                 </Grid>
             )}
-
-            <Button size="large" color="primary" variant="outlined" onClick={startTimer}
-                    fullWidth className={classes.button}><PlayArrowIcon/></Button>
 
             <PlayButton playPauseCallback={callBackPlayPause}/>
             <Grid container >

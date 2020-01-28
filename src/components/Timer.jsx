@@ -27,13 +27,13 @@ class Timer extends Component {
             }
         );
 
-        const {count} = this.state
-        const {text} = this.state
+        const {count} = this.state;
+        const {text} = this.state;
 
         if (count < 0) {
             bell.play();
             if (this.state.countArr.length < 1) {
-                this.props.action('done')
+                this.props.action('done');
                 return null;
             }
             console.log(this.state.countArr);
@@ -67,7 +67,7 @@ class Timer extends Component {
     // setInterval
     // clearInterval
     componentDidMount() {
-        const {countArr} = this.props
+        const {countArr} = this.props;
         this.setState({
             count: 3, //3sek to ready up
             text: 'Get ready',
@@ -78,14 +78,11 @@ class Timer extends Component {
 
     doIntervalChange = () => {
         this.myInterval = setInterval(() => {
-            console.log('Timer ' + this.props.getIsPaused)
-            if (this.props.getIsPaused) {
-                clearInterval(this.myInterval);
-                console.log('SHIT IS PAUSED')
+            if(!this.props.paused) {
+                this.setState(prevState => ({
+                    count: prevState.count - 1
+                }))
             }
-            this.setState(prevState => ({
-                count: prevState.count - 1
-            }))
         }, 1000)
     };
 
