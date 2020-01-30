@@ -4,6 +4,7 @@ import bellAudio from './bell.mp3'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {Container} from "@material-ui/core";
+import ReactNoSleep from 'react-no-sleep';
 
 class Timer extends Component {
 
@@ -47,6 +48,11 @@ class Timer extends Component {
 
         return (
             <div>
+                <ReactNoSleep>
+                    {({ isOn, enable, disable }) => (
+                        isOn = true
+                    )}
+                </ReactNoSleep>
                 <Container>
                 <Paper elevation={0}>
                         <Typography variant="h4" color="textSecondary" gutterBottom>
