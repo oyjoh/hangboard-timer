@@ -50,7 +50,9 @@ class Timer extends Component {
             <div>
                 <ReactNoSleep>
                     {({ isOn, enable, disable }) => (
-                        isOn = true
+                        <button onClick={isOn ? disable : enable}>
+                            {isOn ? 'on' : 'off'}
+                        </button>
                     )}
                 </ReactNoSleep>
                 <Container>
