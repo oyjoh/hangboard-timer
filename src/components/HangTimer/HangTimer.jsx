@@ -10,7 +10,7 @@ import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 import PlayButton from '../PlayButton/PlayButton';
-import IntervalTimer from "../IntervalTimer";
+import IntervalTimer from "../Timer/IntervalTimer";
 
 
 const useStyles = makeStyles(theme => ({
