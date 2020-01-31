@@ -51,7 +51,6 @@ const Selector = (props) => {
     };
 
     const handleChange = (event) => {
-        console.log(Number(event.target.value));
         const num =  Number(event.target.value);
         setState({...state, clicks: num});
         sendData(num);
