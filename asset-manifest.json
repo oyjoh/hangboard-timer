@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/hangboard-timer/static/css/main.eab24d3c.chunk.css",
-    "main.js": "/hangboard-timer/static/js/main.6afc979b.chunk.js",
-    "main.js.map": "/hangboard-timer/static/js/main.6afc979b.chunk.js.map",
+    "main.js": "/hangboard-timer/static/js/main.e8610184.chunk.js",
+    "main.js.map": "/hangboard-timer/static/js/main.e8610184.chunk.js.map",
     "runtime-main.js": "/hangboard-timer/static/js/runtime-main.3a69e319.js",
     "runtime-main.js.map": "/hangboard-timer/static/js/runtime-main.3a69e319.js.map",
     "static/js/2.cae20282.chunk.js": "/hangboard-timer/static/js/2.cae20282.chunk.js",
     "static/js/2.cae20282.chunk.js.map": "/hangboard-timer/static/js/2.cae20282.chunk.js.map",
     "index.html": "/hangboard-timer/index.html",
-    "precache-manifest.7b8adab23ef9822c1e63b5374dae2869.js": "/hangboard-timer/precache-manifest.7b8adab23ef9822c1e63b5374dae2869.js",
+    "precache-manifest.b7f84ec68524fd8471ba20848d126fb7.js": "/hangboard-timer/precache-manifest.b7f84ec68524fd8471ba20848d126fb7.js",
     "service-worker.js": "/hangboard-timer/service-worker.js",
     "static/css/main.eab24d3c.chunk.css.map": "/hangboard-timer/static/css/main.eab24d3c.chunk.css.map",
     "static/js/2.cae20282.chunk.js.LICENSE": "/hangboard-timer/static/js/2.cae20282.chunk.js.LICENSE",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.3a69e319.js",
     "static/js/2.cae20282.chunk.js",
     "static/css/main.eab24d3c.chunk.css",
-    "static/js/main.6afc979b.chunk.js"
+    "static/js/main.e8610184.chunk.js"
   ]
 }
