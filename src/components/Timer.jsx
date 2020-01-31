@@ -36,9 +36,7 @@ class Timer extends Component {
                 this.props.action('done');
                 return null;
             }
-            console.log(this.state.countArr);
             let next = this.state.countArr.shift();
-            console.log(next);
             this.setState({
                 count: next[0],
                 text: next[1]

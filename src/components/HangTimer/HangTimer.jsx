@@ -36,16 +36,15 @@ const HangTimer = () => {
     });
 
     const callBackFunction = (e) => {
-        console.log(`${e.num} ${e.pos}`);
         setState({...state, [e.pos]: e.num});
     };
 
 
     const callBackPlayPause = (e) => {
         switch (e) {
-            case "play" : setHide(true); updateTimer(false); break;
+            case "play" : setHide(true); setMode("hide"); updateTimer(false); break;
             case "pause" : updateTimer(true); break;
-            case "stop" : setHide(false); setTimer(null); break;
+            case "stop" : setHide(false); setMode("list"); setTimer(null); break;
             default : console.error("CALLBACK GAVE UNVALID VALUE");
         }
     };
@@ -71,7 +70,6 @@ const HangTimer = () => {
     const [hide, setHide] = useState(false);
 
     const handleModeChange = (event, value) => {
-        console.log(value);
         switch (value) {
             case "list": setHide(false); setMode("list");break;
             case "grid": setHide(false); setMode("grid");break;

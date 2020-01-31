@@ -19,14 +19,12 @@ class IntervalTimer extends Component {
     }
 
     childHandler(dataFromChild) {
-        console.log('CHILD DONE');
         this.setState({
             child_timer_done: true
         })
     }
 
     componentWillMount() {
-        console.log(this.state);
         const arr = [];
 
         for (let i = 0; i < this.state.reps2; i++) {
@@ -36,11 +34,9 @@ class IntervalTimer extends Component {
             }
             arr.push([this.state.rest2, 'rest'])
         }
-        console.log(arr);
         this.setState({
             timerArr: arr
         });
-        console.log(this.state.timerArr)
     }
 
     render() {
@@ -53,7 +49,6 @@ class IntervalTimer extends Component {
             </Typography>
         }
 
-        console.log('Intervaltimer ' + this.props.paused);
         return (
             <div>
                 {val}
