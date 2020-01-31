@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import UIfx from 'uifx'
 import bellAudio from '../../assets/bell.mp3'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -15,19 +14,14 @@ const Timer = (props) => {
         }
     );
 
-    const bell = new UIfx(
-        bellAudio,
-        {
-            volume: 1.0, // number between 0.0 ~ 1.0
-            throttleMs: 100
-        }
-    );
+    const bell = new Audio(bellAudio);
 
 
     useEffect(() => {
         const interval = setInterval(() => {
             if (state.count <= 0) {
-                bell.play();
+                bell.play().then();
+                console.log("Playing sound");
                 if (state.countArr.length < 1) {
                     props.action('done');
                     return null;
