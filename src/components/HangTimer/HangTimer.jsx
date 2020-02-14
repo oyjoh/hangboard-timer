@@ -13,6 +13,7 @@ import PlayButton from '../PlayButton';
 import IntervalTimer from "../Timer";
 
 
+
 const useStyles = makeStyles(theme => ({
     root: {
         margin: theme.spacing(1),
@@ -24,6 +25,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const HangTimer = () => {
+
+    const playSound = () => new Audio();
 
     const [state, setState] = React.useState({
         hangTime: 15,
@@ -38,7 +41,6 @@ const HangTimer = () => {
     const callBackFunction = (e) => {
         setState({...state, [e.pos]: e.num});
     };
-
 
     const callBackPlayPause = (e) => {
         switch (e) {
@@ -140,9 +142,7 @@ const HangTimer = () => {
                 value={mode}
                 exclusive
                 onChange={handleModeChange}
-                arial-label="list mode"
-                className={classes.toggleButtonGroup}
-            >
+                arial-label="list mode">
                 <ToggleButton value="list">
                     <ViewListIcon/>
                 </ToggleButton>

@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(1),
         width: 'flex',
     },
+    ButtonGroup: {
+        height: 70,
+    },
 }));
 
 const PlayButton = (props) => {
@@ -22,6 +25,9 @@ const PlayButton = (props) => {
     const [state, setState] = React.useState("play");
 
     const handleStart = () => {
+        const soundEffect = new Audio();
+        console.log("Playing null sound");
+        soundEffect.play().then();
         callBackFunc("play");
         setState("pause");
     };
@@ -52,7 +58,7 @@ const PlayButton = (props) => {
         </Button>;
 
     const buttons =
-        <ButtonGroup fullWidth>
+        <ButtonGroup fullWidth className={classes.ButtonGroup}>
             {(state === "play" || state === "playStop" || state === "stop") && playButton}
             {(state === "pause") && pauseButton}
             {(state === "playStop") && stopButton}

@@ -51,7 +51,7 @@ const Selector = (props) => {
     };
 
     const handleChange = (event) => {
-        const num =  Number(event.target.value);
+        const num = Math.min(Math.max(Number(event.target.value), state.min),state.max);
         setState({...state, clicks: num});
         sendData(num);
     };
